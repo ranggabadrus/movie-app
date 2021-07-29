@@ -1,0 +1,39 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Scrcpy Left-Screen",
+      "type": "shell",
+      "detail": "Run Scrcpy in left screen (-x)",
+      "windows": {
+        "command": ".\\scrcpy --always-on-top --window-x -511 --window-width 0 --window-height 1080 --window-borderless",
+        "options": {
+          "cwd": "D:/PROJECT/scrcpy"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run Scrcpy Right-Screen",
+      "type": "shell",
+      "detail": "Run Scrcpy in Right screen (-x)",
+      "windows": {
+        "command": ".\\scrcpy --always-on-top --window-x -0 --window-width 0 --window-height 1080 --window-borderless",
+        "options": {
+          "cwd": "D:/PROJECT/scrcpy"
+        }
+      },
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "problemMatcher": []
+    }
+  ]
+}
