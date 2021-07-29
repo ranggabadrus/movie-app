@@ -52,6 +52,15 @@ const Dashboard = ({navigation}) => {
     console.log('movie pressed: ', movie.title);
   };
 
+  const handleMenuPress = ()=>{
+      navigation.openDrawer()
+  }
+
+  const handleSearchPress = () => {
+      console.log('search');
+  }
+  
+
   return (
     <View>
       <ImageBackground
@@ -76,11 +85,13 @@ const Dashboard = ({navigation}) => {
               <ButtonCircleIcon
                 iconName={'menu-outline'}
                 backgroundColor={null}
+                onPress={()=>handleMenuPress()}
               />
               <ButtonCircleIcon
                 iconName={'search-outline'}
                 backgroundColor={null}
                 iconSize={35}
+                onPress={()=>handleSearchPress()}
               />
             </View>
             <View
@@ -275,8 +286,8 @@ const Dashboard = ({navigation}) => {
                             },
                             isSelectedGenre
                               ? {
-                                  // borderWidth: 1,
-                                  // borderColor: Theme.light,
+                                  borderWidth: 1,
+                                  borderColor: Theme.light,
                                   backgroundColor: Theme.light,
                                   color: Theme.purpledarkest,
                                 }
