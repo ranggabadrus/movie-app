@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {Theme} from './../utilities/Theme';
 
-const AvatarImageCircle = ({size = 80, src = null}) => {
+const AvatarImageCircle = ({size = 80, src = null, borderWidth=0, borderColor=Theme.darker}) => {
   const sizing = size;
   const imgSrc = src == null ? null : {uri: src};
   return (
@@ -17,6 +17,8 @@ const AvatarImageCircle = ({size = 80, src = null}) => {
           height: sizing,
           width: sizing,
           borderRadius: 500,
+          borderWidth,
+          borderColor,
         }}
       />
     </View>

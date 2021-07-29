@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from 'react-native'
 const Notification = () => {
     return (
         <View>
-            <Text></Text>
+            <Text>Notification</Text>
         </View>
     )
 }

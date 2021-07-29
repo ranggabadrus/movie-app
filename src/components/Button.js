@@ -13,20 +13,22 @@ const Button = ({
   radius = 10,
   isWithRadius = false,
   fontSize = 16,
-  backColor = Theme.darker,
+  buttonColor = Theme.darker,
   textColor,
-  isBold = true,
+  isBold = false,
   isFull = false,
   iconEnabled = false,
   iconName = 'home',
   align = 'center',
   style,
+  backgroundColor,
+  textMarginHorizontal,
 }) => {
   const buttonRadius = isWithRadius ? radius : null;
   const fontFams = isBold ? Fonts.bold : Fonts.regular;
-  const handleBackColor = backColor == null ? null : backColor;
-  const handleBackColorForText =
-    backColor == null
+  const handlebuttonColor = buttonColor == null ? null : buttonColor;
+  const handlebuttonColorForText =
+    buttonColor == null
       ? textColor == null
         ? Theme.darker
         : textColor
@@ -38,23 +40,36 @@ const Button = ({
       ? 'flex-start'
       : 'flex-right';
   return (
-    <View style={[isFull ? null : {flexWrap: 'wrap'}, style]}>
+    <View
+      style={[
+        isFull
+          ? null
+          : {
+              flexWrap: 'wrap',
+              alignSelf: 'flex-start',
+            },
+        {style},
+        {
+          backgroundColor: backgroundColor,
+          borderRadius: buttonRadius,
+        },
+      ]}>
       <TouchableOpacity
         onPress={() => onPress()}
         style={[
           GlobalStyle.buttonContainer,
           {
             borderRadius: buttonRadius,
-            backgroundColor: handleBackColor,
+            backgroundColor: handlebuttonColor,
             alignItems: handleAlign,
           },
         ]}>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
           {iconEnabled ? (
             <Icon
               name={iconName}
               size={fontSize * 1.2}
-              color={handleBackColorForText}
+              color={handlebuttonColorForText}
               style={{marginRight: 16}}
             />
           ) : null}
@@ -62,8 +77,9 @@ const Button = ({
           <Text
             style={{
               fontSize: fontSize,
-              color: handleBackColorForText,
+              color: handlebuttonColorForText,
               fontFamily: fontFams,
+              marginHorizontal: textMarginHorizontal,
             }}>
             {text}
           </Text>

@@ -88,8 +88,8 @@ export default StyleSheet.create({
     position: 'absolute',
     top: -13,
   },
-  textCardH1: {fontFamily: Fonts.bold, fontSize: 20},
-  textCardH2: {fontFamily: Fonts.regular, fontSize: 14},
+  textCardH1: {fontFamily: Fonts.medium, fontSize: 24},
+  textCardH2: {fontFamily: Fonts.medium, fontSize: 16},
   textCardH3: {},
   textCardHGlob: {color: Theme.light},
 });

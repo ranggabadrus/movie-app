@@ -3,6 +3,7 @@ import {Text, TextInput, View} from 'react-native';
 import '../utilities/GlobalStyle';
 import GlobalStyle from '../utilities/GlobalStyle';
 import {Theme} from './../utilities/Theme';
+import {Fonts} from './../utilities/Fonts';
 
 const EditText = ({
   title = 'Text Title',
@@ -24,7 +25,16 @@ const EditText = ({
   bgColor = null,
   autoCap = 'sentences',
   keyType = null,
+  nullifyBG = false,
+  placeholderTextColor,
+  textColor = placeholderTextColor,
+  underlined = false,
+  underlineThickness = 2,
+  underlineColor = Theme.light,
+  fontSize = 18,
+  height,
 }) => {
+  let pickedColor = textColor;
   let placeholderOption = disablePlaceholder
     ? null
     : placeholder != null
@@ -32,7 +42,7 @@ const EditText = ({
     : title != null
     ? title
     : null;
-  let bgElement = bgColor == null ? Theme.light : bgColor;
+  let bgElement = bgColor == null ? (nullifyBG ? null : Theme.light) : bgColor;
   let keyboardsType = keyType => {
     switch (keyType) {
       case 'number':
@@ -65,8 +75,15 @@ const EditText = ({
             {
               maxHeight: linesMax * 60,
               textAlignVertical: align,
+              color: pickedColor,
+              fontFamily: Fonts.bold,
+              borderBottomWidth: underlined ? underlineThickness : null,
+              borderColor: underlineColor,
+              fontSize: fontSize,
+              height:height,
             },
           ]}
+          placeholderTextColor={placeholderTextColor}
           placeholder={placeholderOption}
           value={value}
           onChangeText={txt => onChangeText(txt)}

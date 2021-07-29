@@ -5,9 +5,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {Theme} from './../utilities/Theme';
 
 const ButtonCircleIcon = ({
-  iconName = 'home',
+  iconName = 'home-outline',
   iconSize = 40,
-  iconColor = Theme.darker,
+  iconColor = Theme.light,
   backgroundColor = Theme.darker,
   borderColor = Theme.darker,
   isBordered = false,

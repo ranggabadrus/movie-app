@@ -1,10 +1,14 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-const Dashboard = () => {
+const Dashboard = ({navigation}) => {
+    useEffect(() => {
+        // navigation.openDrawer()
+    }, [])
     return (
         <View>
-            <Text></Text>
+            <Text>COK</Text>
         </View>
     )
 }
