@@ -22,6 +22,7 @@ import {DummyData} from './../utilities/DummyData';
 import ButtonCircleIcon from '../components/ButtonCircleIcon';
 import PosterImage from '../components/PosterImage';
 import {useState} from 'react';
+import SimpleButtonArray from '../components/SimpleButtonArray';
 
 const Dashboard = ({navigation}) => {
   const TAG = 'Screen: Dashboard// ';
@@ -67,7 +68,7 @@ const Dashboard = ({navigation}) => {
         style={{width, height}}
         source={require('../assets/res/bgimage.png')}>
         <LinearGradient
-          style={{width, height: height}}
+          style={{width, height}}
           colors={[
             Theme.purpledarkesta15,
             //   Theme.purpledarka15,
@@ -141,30 +142,11 @@ const Dashboard = ({navigation}) => {
                     width: '100%',
                     flexWrap: 'wrap',
                   }}>
-                  {latestMovie.categories.map((e, i) => {
-                    return (
-                      <View key={i}>
-                        <TouchableOpacity onPress={() => handleGenrePress(e)}>
-                          <Text
-                            style={{
-                              paddingHorizontal: 10,
-                              paddingVertical: 2,
-                              borderWidth: 1,
-                              borderColor: Theme.light,
-                              borderRadius: 30,
-                              textAlign: 'center',
-                              fontSize: 14,
-                              fontFamily: Fonts.medium,
-                              color: Theme.light,
-                              marginHorizontal: 2,
-                              marginVertical: 2,
-                            }}>
-                            {e}
-                          </Text>
-                        </TouchableOpacity>
-                      </View>
-                    );
-                  })}
+                  <SimpleButtonArray
+                    data={latestMovie.categories}
+                    orientation={'row'}
+                    style={{marginVertical: 5}}
+                  />
                 </View>
                 <Text
                   style={{

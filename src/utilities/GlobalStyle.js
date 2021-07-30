@@ -73,24 +73,26 @@ export default StyleSheet.create({
 
   ////////////////////////////////////////////////// ELEMENTS SUCH AS TEXT
   textTitleHero: {
-    fontFamily: Fonts.black,
-    fontSize: 50,
+    fontFamily: Fonts.bold,
+    color: Theme.light,
+    fontSize: 30,
+    // width: '100%',
     // backgroundColor:'yellow',
   },
   textTitleHero2: {
-    fontFamily: Fonts.black,
-    fontSize: 40,
+    fontFamily: Fonts.bold,
+    color: Theme.light,
+    fontSize: 20,
     // backgroundColor:'yellow',
   },
   textTitleHeroSub: {
-    fontFamily: Fonts.regular,
-    fontSize: 30,
-    position: 'absolute',
-    top: -13,
+    fontFamily: Fonts.bold,
+    color: Theme.light,
+    fontSize: 20,
   },
-  textCardH1: {fontFamily: Fonts.medium, fontSize: 24},
-  textCardH2: {fontFamily: Fonts.medium, fontSize: 16},
-  textCardH3: {},
+  textCardH1: {fontFamily: Fonts.medium, fontSize: 24, color: Theme.light},
+  textCardH2: {fontFamily: Fonts.regular, fontSize: 16, color: Theme.light},
+  textCardH3: {fontFamily: Fonts.regular, fontSize: 12, color: Theme.light},
   textCardHGlob: {color: Theme.light},
   textTitle: {
     fontFamily: Fonts.medium,
