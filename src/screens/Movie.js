@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState} from 'react';
 import {
   Dimensions,
   ImageBackground,
@@ -9,11 +10,19 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ButtonCircleIcon from '../components/ButtonCircleIcon';
+import EditText from '../components/EditText';
+import EditTextV2 from '../components/EditTextV2';
+import ItemSlidersCircle from '../components/ItemSliderCircle';
+import ItemSliders from '../components/ItemSliders';
 import SimpleButtonArray from '../components/SimpleButtonArray';
 import {Dimens} from '../utilities/Dimens';
 import {Fonts} from '../utilities/Fonts';
 import GlobalStyle from '../utilities/GlobalStyle';
 import {Theme} from '../utilities/Theme';
+import {DummyData} from './../utilities/DummyData';
+
+const movieArray = DummyData.dummyMovieDataArrayed;
+console.log('movie Array', movieArray);
 
 const Movie = ({navigation, route}) => {
   const movieData = route.params;
@@ -21,6 +30,13 @@ const Movie = ({navigation, route}) => {
   const windowDimension = Dimensions.get('window');
   const width = windowDimension.width;
   const height = windowDimension.height;
+
+  const [starsCount, setStarsCount] = useState(0);
+
+  const handleBackPress = () => {
+    navigation.goBack();
+  };
+
   return (
     <View>
       <ImageBackground
@@ -30,10 +46,71 @@ const Movie = ({navigation, route}) => {
           style={{width, height}}
           colors={[
             Theme.purpledarka15,
+            Theme.purpledarka15,
+            Theme.purpledarkest,
             Theme.purpledarkest,
             Theme.purpledarkest,
           ]}>
+          <View style={{position: 'absolute', zIndex: 10}}>
+            <ImageBackground
+              style={{
+                width,
+                height,
+                backgroundColor: Theme.purpledarkesta90,
+              }}>
+              <ImageBackground
+                style={{
+                  height: height / 1.5,
+                  backgroundColor: Theme.light,
+                  borderRadius: 20,
+                  padding: 20,
+                }}>
+                <Text
+                  style={[
+                    GlobalStyle.textTitle,
+                    {color: Theme.purpledark, fontFamily: Fonts.bold},
+                  ]}>
+                  Write your review
+                </Text>
+                <EditText
+                  title={'Review Title'}
+                  disablePlaceholder
+                  textColor={Theme.purpledark}
+                  borderColor={Theme.purpledark}
+                />
+
+                <EditText
+                  title={'Review Content'}
+                  disablePlaceholder
+                  textColor={Theme.purpledark}
+                  borderColor={Theme.purpledark}
+                  lines={5}
+                  isScrollable
+                  align={'top'}
+                />
+                <View style={{width: '100%', flexDirection: 'row-reverse'}}>
+                  <ButtonCircleIcon
+                    iconName={'checkmark-circle-outline'}
+                    backgroundColor={null}
+                    iconColor={Theme.purpledark}
+                    // onPress={() => handleBackPress()}
+                  />
+                  <ButtonCircleIcon
+                    iconName={'close-outline'}
+                    backgroundColor={null}
+                    iconColor={Theme.purpledark}
+                    // onPress={() => handleBackPress()}
+                  />
+                </View>
+              </ImageBackground>
+            </ImageBackground>
+          </View>
           <ScrollView>
+            <ButtonCircleIcon
+              iconName={'chevron-back-outline'}
+              backgroundColor={null}
+              onPress={() => handleBackPress()}
+            />
             <View
               style={{
                 width,
@@ -152,13 +229,70 @@ const Movie = ({navigation, route}) => {
               <View
                 style={{
                   height: 0,
-                //   width: '100%',
+                  //   width: '100%',
                   borderColor: Theme.light,
                   borderTopWidth: 1,
                   marginVertical: 20,
-                  marginHorizontal:Dimens.globalPaddingHorizontal
+                  marginHorizontal: Dimens.globalPaddingHorizontal,
                 }}
               />
+              <Text
+                style={[
+                  GlobalStyle.textTitle,
+                  {
+                    marginVertical: 5,
+                    paddingHorizontal: Dimens.globalPaddingHorizontal,
+                  },
+                ]}>
+                Movies casts
+              </Text>
+              <ItemSlidersCircle data={movieArray} />
+              {
+                //TODO update ItemSlidersCircle
+              }
+              <View
+                style={{
+                  height: 0,
+                  //   width: '100%',
+                  borderColor: Theme.light,
+                  borderTopWidth: 1,
+                  marginVertical: 20,
+                  marginHorizontal: Dimens.globalPaddingHorizontal,
+                }}
+              />
+              <Text
+                style={[
+                  GlobalStyle.textTitle,
+                  {
+                    marginVertical: 5,
+                    paddingHorizontal: Dimens.globalPaddingHorizontal,
+                  },
+                ]}>
+                Movies like this
+              </Text>
+              <ItemSliders data={movieArray} />
+
+              <View
+                style={{
+                  height: 0,
+                  //   width: '100%',
+                  borderColor: Theme.light,
+                  borderTopWidth: 1,
+                  marginVertical: 20,
+                  marginHorizontal: Dimens.globalPaddingHorizontal,
+                }}
+              />
+              <Text
+                style={[
+                  GlobalStyle.textTitle,
+                  {
+                    marginVertical: 5,
+                    paddingHorizontal: Dimens.globalPaddingHorizontal,
+                  },
+                ]}>
+                This Movie Review
+              </Text>
+
               <View style={{marginVertical: 10, height: 100}} />
             </View>
           </ScrollView>

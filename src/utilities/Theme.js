@@ -9,6 +9,7 @@ export const Theme = {
   purpledarkest: '#35143D',
   purpledarkesta15: '#35143D15',
   purpledarkesta60: '#35143D60',
+  purpledarkesta90: '#35143DE6',
   purpledarka90: '#7700A658',
   purpledarka15: '#7700A615',
   purplelight: '#FE00FE',

@@ -33,6 +33,7 @@ const EditText = ({
   underlineColor = Theme.light,
   fontSize = 18,
   height,
+  borderColor
 }) => {
   let pickedColor = textColor;
   let placeholderOption = disablePlaceholder
@@ -62,18 +63,19 @@ const EditText = ({
         {
           borderWidth: isTitledFull ? borderWidth : null,
           backgroundColor: bgElement,
+          
         },
       ]}>
       <View
         style={[
           GlobalStyle.editTextTextInputContainer,
-          {borderWidth: !isTitledFull ? borderWidth : null},
+          {borderWidth: !isTitledFull ? borderWidth : null},{borderColor}
         ]}>
         <TextInput
           style={[
             GlobalStyle.editTextTextInput,
             {
-              maxHeight: linesMax * 60,
+              maxHeight: fontSize * 7,
               textAlignVertical: align,
               color: pickedColor,
               fontFamily: Fonts.bold,
@@ -93,10 +95,11 @@ const EditText = ({
           multiline={isScrollable}
           autoCapitalize={autoCap}
           keyboardType={keyboardsType(keyType)}
+          // maxLength={3}
         />
       </View>
       {isTitled ? (
-        <Text style={[GlobalStyle.editTextTitle, {backgroundColor: bgElement}]}>
+        <Text style={[GlobalStyle.editTextTitle, {backgroundColor: bgElement, color:textColor}]}>
           {title}
         </Text>
       ) : null}
