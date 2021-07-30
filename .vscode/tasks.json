@@ -8,7 +8,7 @@
       "type": "shell",
       "detail": "Run Scrcpy in left screen (-x)",
       "windows": {
-        "command": ".\\scrcpy --always-on-top --window-x -511 --window-width 0 --window-height 1080 --window-borderless",
+        "command": ".\\scrcpy --always-on-top --window-x -500 --window-width 0 --window-height 1025",
         "options": {
           "cwd": "D:/PROJECT/scrcpy"
         }
@@ -24,7 +24,7 @@
       "type": "shell",
       "detail": "Run Scrcpy in Right screen (-x)",
       "windows": {
-        "command": ".\\scrcpy --always-on-top --window-x -0 --window-width 0 --window-height 1080 --window-borderless",
+        "command": ".\\scrcpy --always-on-top --window-x -0 --window-width 0 --window-height 1025",
         "options": {
           "cwd": "D:/PROJECT/scrcpy"
         }
@@ -34,6 +34,13 @@
         "panel": "new"
       },
       "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "android",
+      "problemMatcher": [],
+      "label": "npm: android",
+      "detail": "react-native run-android"
     }
   ]
 }

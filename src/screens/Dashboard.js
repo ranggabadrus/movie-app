@@ -52,14 +52,13 @@ const Dashboard = ({navigation}) => {
     console.log('movie pressed: ', movie.title);
   };
 
-  const handleMenuPress = ()=>{
-      navigation.openDrawer()
-  }
+  const handleMenuPress = () => {
+    navigation.openDrawer();
+  };
 
   const handleSearchPress = () => {
-      console.log('search');
-  }
-  
+    navigation.push('Search');
+  };
 
   return (
     <View>
@@ -85,13 +84,13 @@ const Dashboard = ({navigation}) => {
               <ButtonCircleIcon
                 iconName={'menu-outline'}
                 backgroundColor={null}
-                onPress={()=>handleMenuPress()}
+                onPress={() => handleMenuPress()}
               />
               <ButtonCircleIcon
                 iconName={'search-outline'}
                 backgroundColor={null}
-                iconSize={35}
-                onPress={()=>handleSearchPress()}
+                // iconSize={35}
+                onPress={() => handleSearchPress()}
               />
             </View>
             <View

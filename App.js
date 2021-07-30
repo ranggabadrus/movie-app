@@ -19,6 +19,7 @@ import Notification from './src/screens/Notification';
 import Settings from './src/screens/Settings';
 import Profile from './src/screens/Profile';
 import DrawerMain from './src/components/DrawerMain';
+import Search from './src/screens/Search';
 
 const TAG = 'GLOBAL - APP///>>> ';
 
@@ -70,6 +71,7 @@ const Apps = () => {
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Dashboard" component={DashboardDrawerRoute} />
         <Stack.Screen name="MovieDetails" component={Movie} />
+        <Stack.Screen name="Search" component={Search}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
