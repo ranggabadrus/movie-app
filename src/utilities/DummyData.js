@@ -147,3 +147,16 @@ export const DummyData = {
     'Crime',
   ],
 };
+export const getMovieTitleAndID = (movieArray = []) => {
+  const movieArrayToIterate =
+    movieArray.length <= 0 ? DummyData.dummyMovieDataArrayed : movieArray;
+  const movieTitleID = [];
+  for (const movie of movieArrayToIterate) {
+    const thisMovie = {
+      title: movie.title,
+      _id: movie._id,
+    };
+    movieTitleID.push(thisMovie);
+  }
+  return movieTitleID;
+}

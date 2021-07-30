@@ -49,7 +49,8 @@ const Dashboard = ({navigation}) => {
   };
 
   const handleMoviePress = movie => {
-    console.log('movie pressed: ', movie.title);
+    // console.log('movie pressed: ', movie.title);
+    navigation.navigate('MovieDetails', movie);
   };
 
   const handleMenuPress = () => {

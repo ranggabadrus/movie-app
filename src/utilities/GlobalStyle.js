@@ -92,11 +92,17 @@ export default StyleSheet.create({
   textCardH2: {fontFamily: Fonts.medium, fontSize: 16},
   textCardH3: {},
   textCardHGlob: {color: Theme.light},
+  textTitle: {
+    fontFamily: Fonts.medium,
+    color: Theme.light,
+    fontSize: 20,
+    width: '100%',
+  },
 
   separator: {
     height: 0,
-    borderColor: Theme.light, 
+    borderColor: Theme.light,
     borderWidth: 1,
-    width:'100%'
+    width: '100%',
   },
 });

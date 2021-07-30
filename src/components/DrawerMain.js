@@ -18,7 +18,7 @@ const DrawerMain = props => {
   const navigation = props.navigation;
   //   console.log('route names: ', routeNames);
   //   console.log('navigation: ', navigation.isFocused());
-  console.log('state: ', props);
+  // console.log('state: ', props);
 
   const dummyUserData = {
     userFullName: 'Isumi Karina',
