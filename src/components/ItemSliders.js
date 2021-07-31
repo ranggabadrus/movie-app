@@ -14,8 +14,11 @@ const ItemSliders = ({
     );
   },
   vertical = false,
+  itemWidth = 100,
+  itemSpacing = 16,
+  isSnap = false,
 }) => {
-  console.log('data received: ', data);
+  // console.log('data received: ', data);
   return (
     <FlatList
       data={data}
@@ -28,16 +31,12 @@ const ItemSliders = ({
           <View
             key={item.id}
             style={{
-              width: 100,
-              marginLeft: 16,
+              width: itemWidth,
+              marginLeft: itemSpacing,
               marginVertical: 10,
               alignItems: 'center',
             }}>
-            <PosterImage
-              small
-              pressable
-              onPress={() => onItemPress(item)}
-            />
+            <PosterImage small pressable onPress={() => onItemPress(item)} />
             <Text
               style={{
                 fontFamily: Fonts.bold,
@@ -46,7 +45,6 @@ const ItemSliders = ({
                 width: '110%',
                 textAlign: 'center',
                 marginTop: 5,
-                //   backgroundColor: 'red',
               }}>
               {item.title}
             </Text>

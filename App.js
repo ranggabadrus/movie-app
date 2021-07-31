@@ -20,6 +20,7 @@ import Settings from './src/screens/Settings';
 import Profile from './src/screens/Profile';
 import DrawerMain from './src/components/DrawerMain';
 import Search from './src/screens/Search';
+import EditProfile from './src/screens/EditProfile';
 
 const TAG = 'GLOBAL - APP///>>> ';
 
@@ -27,14 +28,15 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
-const defaultScreen = 'Dashboard'; ////////////////////////////Change default screen here
+const defaultScreen = 'SplashScreen';
+const defaultTabScreen = 'Dashboard'; ////////////////////////////Change default screen here
 
 const Apps = () => {
   ///////////////////////Routing Settings////////////////////////////////
   const DashboardTabRoute = () => {
     return (
       <Tab.Navigator
-        initialRouteName="Dashboard"
+        initialRouteName={defaultTabScreen}
         tabBarOptions={{keyboardHidesTabBar: true}}>
         <Tab.Screen name="Notification" component={Notification} />
         <Tab.Screen name="Dashboard" component={Dashboard} />
@@ -47,10 +49,12 @@ const Apps = () => {
       <Drawer.Navigator
         initialRouteName="Dashboard"
         drawerContent={props => <DrawerMain {...props} juancokAsu={true} />}
-        drawerContentOptions={{
-          // activeTintColor: '#000000',
-          // itemStyle: {marginVertical: 30},
-        }}
+        drawerContentOptions={
+          {
+            // activeTintColor: '#000000',
+            // itemStyle: {marginVertical: 30},
+          }
+        }
         // openByDefault={true}
       >
         <Drawer.Screen name="Dashboard" component={DashboardTabRoute} />
@@ -71,7 +75,8 @@ const Apps = () => {
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Dashboard" component={DashboardDrawerRoute} />
         <Stack.Screen name="MovieDetails" component={Movie} />
-        <Stack.Screen name="Search" component={Search}/>
+        <Stack.Screen name="Search" component={Search} />
+        <Stack.Screen name="EditProfile" component={EditProfile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

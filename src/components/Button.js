@@ -48,7 +48,7 @@ const Button = ({
               flexWrap: 'wrap',
               alignSelf: 'flex-start',
             },
-        {style},
+
         {
           backgroundColor: backgroundColor,
           borderRadius: buttonRadius,
@@ -60,9 +60,11 @@ const Button = ({
           GlobalStyle.buttonContainer,
           {
             borderRadius: buttonRadius,
+            // backgroundColor: handlebuttonColor,
             backgroundColor: handlebuttonColor,
             alignItems: handleAlign,
           },
+          {...style},
         ]}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           {iconEnabled ? (
@@ -80,6 +82,7 @@ const Button = ({
               color: handlebuttonColorForText,
               fontFamily: fontFams,
               marginHorizontal: textMarginHorizontal,
+              // backgroundColor:'red'
             }}>
             {text}
           </Text>

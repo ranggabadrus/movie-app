@@ -25,16 +25,16 @@ import SimpleButtonArray from '../components/SimpleButtonArray';
 import StarRating from '../components/StarRating';
 
 const movieArray = DummyData.dummyMovieDataArrayed;
-console.log('movie Array', movieArray);
+// console.log('movie Array', movieArray);
 
 const Movie = ({navigation, route}) => {
   const movieData = route.params;
-  console.log(movieData);
+  // console.log(movieData);
   const windowDimension = Dimensions.get('window');
   const width = windowDimension.width;
   const height = windowDimension.height;
 
-  const animationDuration = 1000;
+  const animationDuration = 750;
 
   const [starsCount, setStarsCount] = useState(0);
   const [isCommentApear, setIsCommentApear] = useState(false);

@@ -23,6 +23,7 @@ import ButtonCircleIcon from '../components/ButtonCircleIcon';
 import PosterImage from '../components/PosterImage';
 import {useState} from 'react';
 import SimpleButtonArray from '../components/SimpleButtonArray';
+import ItemSliders from '../components/ItemSliders';
 
 const Dashboard = ({navigation}) => {
   const TAG = 'Screen: Dashboard// ';
@@ -190,42 +191,9 @@ const Dashboard = ({navigation}) => {
               </Text>
             </View>
             <View>
-              <FlatList
+              <ItemSliders
                 data={movieArray}
-                keyExtractor={item => item._id}
-                horizontal={true}
-                renderItem={({item}) => {
-                  //   console.log('item: ', item);
-                  return (
-                    <View
-                      key={item.id}
-                      style={{
-                        width: 100,
-                        marginLeft: 16,
-                        marginVertical: 10,
-                        alignItems: 'center',
-                      }}>
-                      <PosterImage
-                        small
-                        pressable
-                        onPress={() => handleMoviePress(item)}
-                      />
-                      <Text
-                        style={{
-                          fontFamily: Fonts.bold,
-                          color: Theme.light,
-                          fontSize: 14,
-                          width: '110%',
-                          textAlign: 'center',
-                          marginTop: 5,
-                          //   backgroundColor: 'red',
-                        }}>
-                        {item.title}
-                      </Text>
-                    </View>
-                  );
-                }}
-                // keyExtractor={item => item.id}
+                onItemPress={item => handleMoviePress(item)}
               />
             </View>
             <View style={{paddingHorizontal: 10}}>
@@ -288,7 +256,64 @@ const Dashboard = ({navigation}) => {
               />
             </View>
             <View style={{marginBottom: 100, marginTop: 20}}>
-              <FlatList
+              <ItemSliders
+                data={movieArray}
+                onItemPress={item => handleMoviePress(item)}
+              />
+            </View>
+          </ScrollView>
+        </LinearGradient>
+      </ImageBackground>
+    </View>
+  );
+};
+
+export default Dashboard;
+
+const styles = StyleSheet.create({});
+
+const trashDontUse = () => {
+  {
+    /* <FlatList
+                data={movieArray}
+                keyExtractor={item => item._id}
+                horizontal={true}
+                renderItem={({item}) => {
+                  //   console.log('item: ', item);
+                  return (
+                    <View
+                      key={item.id}
+                      style={{
+                        width: 100,
+                        marginLeft: 16,
+                        marginVertical: 10,
+                        alignItems: 'center',
+                      }}>
+                      <PosterImage
+                        small
+                        pressable
+                        onPress={() => handleMoviePress(item)}
+                      />
+                      <Text
+                        style={{
+                          fontFamily: Fonts.bold,
+                          color: Theme.light,
+                          fontSize: 14,
+                          width: '110%',
+                          textAlign: 'center',
+                          marginTop: 5,
+                          //   backgroundColor: 'red',
+                        }}>
+                        {item.title}
+                      </Text>
+                    </View>
+                  );
+                }}
+                // keyExtractor={item => item.id}
+              /> */
+  }
+  {
+    /* <FlatList
                 data={movieArray}
                 keyExtractor={item => item._id}
                 nestedScrollEnabled
@@ -324,15 +349,6 @@ const Dashboard = ({navigation}) => {
                     </View>
                   );
                 }}
-              />
-            </View>
-          </ScrollView>
-        </LinearGradient>
-      </ImageBackground>
-    </View>
-  );
+              /> */
+  }
 };
-
-export default Dashboard;
-
-const styles = StyleSheet.create({});

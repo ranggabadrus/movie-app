@@ -98,7 +98,7 @@ export default StyleSheet.create({
     fontFamily: Fonts.medium,
     color: Theme.light,
     fontSize: 20,
-    width: '100%',
+    // width: '100%',
   },
 
   separator: {

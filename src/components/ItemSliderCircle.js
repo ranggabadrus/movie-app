@@ -16,7 +16,7 @@ const ItemSlidersCircle = ({
   },
   vertical = false,
 }) => {
-  console.log('data received: ', data);
+  // console.log('data received: ', data);
   return (
     <FlatList
       data={data}
@@ -35,7 +35,7 @@ const ItemSlidersCircle = ({
               alignItems: 'center',
             }}>
             {/* <PosterImage small pressable onPress={() => onItemPress(item)} /> */}
-            <AvatarImageCircle/>
+            <AvatarImageCircle />
             <Text
               style={{
                 fontFamily: Fonts.bold,

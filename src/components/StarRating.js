@@ -11,8 +11,9 @@ const StarRating = ({
       number,
     );
   },
+  defaultNumber = 0,
 }) => {
-  const [starRating, setStarRating] = useState(0);
+  const [starRating, setStarRating] = useState(defaultNumber);
   return (
     <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
       <ButtonCircleIcon
