@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {useState} from 'react';
 import {
+  Animated,
   Dimensions,
   ImageBackground,
   ScrollView,
@@ -9,17 +10,19 @@ import {
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import ButtonCircleIcon from '../components/ButtonCircleIcon';
-import EditText from '../components/EditText';
-import EditTextV2 from '../components/EditTextV2';
-import ItemSlidersCircle from '../components/ItemSliderCircle';
-import ItemSliders from '../components/ItemSliders';
-import SimpleButtonArray from '../components/SimpleButtonArray';
+
 import {Dimens} from '../utilities/Dimens';
 import {Fonts} from '../utilities/Fonts';
 import GlobalStyle from '../utilities/GlobalStyle';
 import {Theme} from '../utilities/Theme';
 import {DummyData} from './../utilities/DummyData';
+
+import ButtonCircleIcon from '../components/ButtonCircleIcon';
+import EditText from '../components/EditText';
+import ItemSlidersCircle from '../components/ItemSliderCircle';
+import ItemSliders from '../components/ItemSliders';
+import SimpleButtonArray from '../components/SimpleButtonArray';
+import StarRating from '../components/StarRating';
 
 const movieArray = DummyData.dummyMovieDataArrayed;
 console.log('movie Array', movieArray);
@@ -31,10 +34,67 @@ const Movie = ({navigation, route}) => {
   const width = windowDimension.width;
   const height = windowDimension.height;
 
+  const animationDuration = 1000;
+
   const [starsCount, setStarsCount] = useState(0);
+  const [isCommentApear, setIsCommentApear] = useState(false);
+
+  const opacity = useRef(new Animated.Value(0)).current;
+  const translateY = useRef(new Animated.Value(height)).current;
+  const translateZ = useRef(new Animated.Value(-1)).current;
+
+  useEffect(() => {
+    console.log('triggered rating: ', starsCount);
+  }, [starsCount]);
 
   const handleBackPress = () => {
     navigation.goBack();
+  };
+  const handleHeartPress = () => {
+    !isCommentApear
+      ? Animated.stagger(1000, [
+          Animated.parallel([
+            Animated.timing(opacity, {
+              toValue: !isCommentApear ? 1 : 0,
+              duration: animationDuration,
+              useNativeDriver: true,
+            }),
+            Animated.timing(translateZ, {
+              toValue: !isCommentApear ? 1 : -1,
+              duration: animationDuration,
+              useNativeDriver: true,
+            }),
+          ]),
+          Animated.timing(translateY, {
+            toValue: !isCommentApear ? height / 2 - 40 : height,
+            duration: animationDuration,
+            useNativeDriver: true,
+          }),
+        ]).start()
+      : Animated.stagger(1000, [
+          Animated.timing(translateY, {
+            toValue: !isCommentApear ? height / 2 - 40 : height,
+            duration: animationDuration,
+            useNativeDriver: true,
+          }),
+          Animated.parallel([
+            Animated.timing(opacity, {
+              toValue: !isCommentApear ? 1 : 0,
+              duration: animationDuration,
+              useNativeDriver: true,
+            }),
+            Animated.timing(translateZ, {
+              toValue: !isCommentApear ? 1 : -1,
+              duration: animationDuration,
+              useNativeDriver: true,
+            }),
+          ]),
+        ]).start();
+    setIsCommentApear(!isCommentApear);
+  };
+
+  const handleSubmitReview = () => {
+    handleHeartPress();
   };
 
   return (
@@ -46,65 +106,84 @@ const Movie = ({navigation, route}) => {
           style={{width, height}}
           colors={[
             Theme.purpledarka15,
-            Theme.purpledarka15,
-            Theme.purpledarkest,
+            // Theme.purpledarka15,
+            // Theme.purpledarkest,
             Theme.purpledarkest,
             Theme.purpledarkest,
           ]}>
-          <View style={{position: 'absolute', zIndex: 10}}>
+          <Animated.View
+            style={{
+              position: 'absolute',
+              zIndex: translateZ,
+              opacity: opacity,
+            }}>
             <ImageBackground
               style={{
                 width,
                 height,
                 backgroundColor: Theme.purpledarkesta90,
               }}>
-              <ImageBackground
-                style={{
-                  height: height / 1.5,
-                  backgroundColor: Theme.light,
-                  borderRadius: 20,
-                  padding: 20,
-                }}>
-                <Text
-                  style={[
-                    GlobalStyle.textTitle,
-                    {color: Theme.purpledark, fontFamily: Fonts.bold},
-                  ]}>
-                  Write your review
-                </Text>
-                <EditText
-                  title={'Review Title'}
-                  disablePlaceholder
-                  textColor={Theme.purpledark}
-                  borderColor={Theme.purpledark}
-                />
+              {
+                /////////OVERLAY!!! NO MODAL
+              }
+              <Animated.View style={{transform: [{translateY: translateY}]}}>
+                <ImageBackground
+                  style={{
+                    height: height / 1.5,
+                    backgroundColor: Theme.light,
+                    borderRadius: 20,
+                    padding: 20,
+                  }}>
+                  <Text
+                    style={[
+                      GlobalStyle.textTitle,
+                      {color: Theme.purpledark, fontFamily: Fonts.bold},
+                    ]}>
+                    Write your review
+                  </Text>
+                  <View style={{height: 10}} />
+                  <View>
+                    <StarRating
+                      onRatePress={rating => {
+                        setStarsCount(rating);
+                      }}
+                    />
+                    <View style={{height: 10}} />
+                  </View>
+                  <EditText
+                    title={'Review Title'}
+                    disablePlaceholder
+                    textColor={Theme.purpledark}
+                    borderColor={Theme.purpledark}
+                  />
 
-                <EditText
-                  title={'Review Content'}
-                  disablePlaceholder
-                  textColor={Theme.purpledark}
-                  borderColor={Theme.purpledark}
-                  lines={5}
-                  isScrollable
-                  align={'top'}
-                />
-                <View style={{width: '100%', flexDirection: 'row-reverse'}}>
-                  <ButtonCircleIcon
-                    iconName={'checkmark-circle-outline'}
-                    backgroundColor={null}
-                    iconColor={Theme.purpledark}
-                    // onPress={() => handleBackPress()}
+                  <EditText
+                    title={'Review Content'}
+                    disablePlaceholder
+                    textColor={Theme.purpledark}
+                    borderColor={Theme.purpledark}
+                    lines={5}
+                    isScrollable
+                    align={'top'}
                   />
-                  <ButtonCircleIcon
-                    iconName={'close-outline'}
-                    backgroundColor={null}
-                    iconColor={Theme.purpledark}
-                    // onPress={() => handleBackPress()}
-                  />
-                </View>
-              </ImageBackground>
+                  <View style={{width: '100%', flexDirection: 'row-reverse'}}>
+                    <ButtonCircleIcon
+                      iconName={'checkmark-circle-outline'}
+                      backgroundColor={null}
+                      iconColor={Theme.purpledark}
+                      onPress={() => handleSubmitReview()}
+                    />
+                    <ButtonCircleIcon
+                      iconName={'close-outline'}
+                      backgroundColor={null}
+                      iconColor={Theme.purpledark}
+                      onPress={() => handleHeartPress()}
+                    />
+                  </View>
+                </ImageBackground>
+              </Animated.View>
             </ImageBackground>
-          </View>
+          </Animated.View>
           <ScrollView>
             <ButtonCircleIcon
               iconName={'chevron-back-outline'}
@@ -165,6 +244,7 @@ const Movie = ({navigation, route}) => {
                     backgroundColor={null}
                     iconSize={30}
                     iconName={'heart'}
+                    onPress={() => handleHeartPress()}
                   />
                 </View>
               </View>
