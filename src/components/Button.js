@@ -47,6 +47,7 @@ const Button = ({
           : {
               flexWrap: 'wrap',
               alignSelf: 'flex-start',
+              borderRadius:buttonRadius
             },
 
         {

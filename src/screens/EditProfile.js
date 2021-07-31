@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState} from 'react';
 import {
   Dimensions,
   ImageBackground,
@@ -11,16 +12,25 @@ import LinearGradient from 'react-native-linear-gradient';
 import AvatarImageCircle from '../components/AvatarImageCircle';
 import Button from '../components/Button';
 import ButtonCircleIcon from '../components/ButtonCircleIcon';
+import EditText from '../components/EditText';
 import {Dimens} from '../utilities/Dimens';
 import {Fonts} from '../utilities/Fonts';
 import GlobalStyle from '../utilities/GlobalStyle';
 import {Theme} from '../utilities/Theme';
 import AvatarImage from './../components/AvatarImage';
+import EditTextV2 from './../components/EditTextV2';
 
 const EditProfile = ({navigation}) => {
   const windowDimension = Dimensions.get('window');
   const width = windowDimension.width;
   const height = windowDimension.height;
+
+  const [userData, setUserData] = useState({
+    userFullName: 'Isumi Karina',
+    userUsername: 'isumicaem',
+  });
+  const [userFullName, setUserFullName] = useState('');
+  const [username, setUsername] = useState('');
 
   const handleBackPress = () => {
     navigation.goBack();
@@ -36,16 +46,16 @@ const EditProfile = ({navigation}) => {
           colors={[
             Theme.purpledarka15,
             // Theme.purpledarka15,
-            // Theme.purpledarkest,
+            Theme.purpledarkest,
             Theme.purpledarkest,
             Theme.purpledarkest,
           ]}>
           <ScrollView>
-              <ButtonCircleIcon
-                  iconName={'chevron-back-outline'}
-                  backgroundColor={null}
-                  onPress={() => handleBackPress()}
-                />
+            <ButtonCircleIcon
+              iconName={'chevron-back-outline'}
+              backgroundColor={null}
+              onPress={() => handleBackPress()}
+            />
             <View
               style={{
                 paddingHorizontal: Dimens.globalPaddingHorizontal,
@@ -58,40 +68,31 @@ const EditProfile = ({navigation}) => {
                 style={{
                   //   flexDirection: 'row-reverse',
                   justifyContent: 'space-between',
+                }}></View>
+              <View
+                style={{
+                  height: height / 5,
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}>
-                {/* <Button
-                  text={'Edit Profile'}
-                  buttonColor={null}
-                  fontSize={12}
-                  textColor={Theme.light}
-                  style={{
-                    borderWidth: 1,
-                    borderColor: Theme.light,
-                    paddingHorizontal: 20,
-                    paddingVertical: 5,
-                  }}
-                  isWithRadius
-                /> */}
-                
-              </View>
-              <View style={{height: height / 5,alignItems:'center',justifyContent:'flex-end'}}>
                 {
                   ////top spacers
                 }
-                <AvatarImageCircle/>
+                <AvatarImageCircle size={120} />
+                {
+                  //TODO change user image avatar
+                }
               </View>
               <View
                 style={{
                   flexDirection: 'row',
-                  //   backgroundColor:'gold'
                 }}>
                 <View
                   style={{
                     //   width:'80%',
                     flex: 1,
                     justifyContent: 'flex-end',
-                    alignItems:'center'
-                    //   backgroundColor:'gold'
+                    alignItems: 'center',
                   }}>
                   <Text style={[GlobalStyle.textTitle, {paddingRight: 10}]}>
                     Isumi Karina
@@ -100,11 +101,6 @@ const EditProfile = ({navigation}) => {
                     @isumicaem
                   </Text>
                 </View>
-                {/* <View style={{width:100,height:100}}/> */}
-                {/* <AvatarImage size={100} /> */}
-                {
-                  //TODO change user image avatar
-                }
               </View>
               <View
                 style={{
@@ -124,6 +120,33 @@ const EditProfile = ({navigation}) => {
               {
                 ///////////////////////////////// end of container view
               }
+            </View>
+            <View
+              style={{
+                paddingHorizontal: Dimens.globalPaddingHorizontal,
+                paddingTop: 10,
+              }}>
+              <EditTextV2
+                backgroundColor={Theme.purpledarkest}
+                title={'Full Name'}
+                textColor={Theme.light}
+                borderColor={Theme.light}
+                placeholder={'testplace'}
+                style={{marginBottom: 10}}
+                onChangeText={t => setUserFullName(t)}
+              />
+              <EditTextV2
+                backgroundColor={Theme.purpledarkest}
+                title={'Username'}
+                textColor={Theme.light}
+                borderColor={Theme.light}
+                placeholder={'testplace'}
+                style={{marginBottom: 10}}
+                onChangeText={t => setUsername(t)}
+              />
+            </View>
+            <View style={{flexDirection: 'row-reverse', paddingHorizontal:Dimens.globalPaddingHorizontal,marginTop:10}}>
+              <Button isBold backgroundColor={Theme.yellow} textColor={Theme.purpledarkest} text={'Submit'} buttonColor={Theme.light} radius={10} isWithRadius style={{paddingHorizontal:30}}/>
             </View>
           </ScrollView>
         </LinearGradient>

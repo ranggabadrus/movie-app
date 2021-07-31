@@ -28,8 +28,8 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
-const defaultScreen = 'SplashScreen';
-const defaultTabScreen = 'Dashboard'; ////////////////////////////Change default screen here
+const defaultScreen = 'SplashScreen'; ////////////////////////////Default: 'SplashScreen'
+const defaultTabScreen = 'Dashboard'; ////////////////////////////Default: 'Dashboard'
 
 const Apps = () => {
   ///////////////////////Routing Settings////////////////////////////////
