@@ -23,9 +23,14 @@ import ItemSlidersCircle from '../components/ItemSliderCircle';
 import ItemSliders from '../components/ItemSliders';
 import SimpleButtonArray from '../components/SimpleButtonArray';
 import StarRating from '../components/StarRating';
+import Slider from '../components/Slider';
+import AvatarImageCircle from '../components/AvatarImageCircle';
+import MovieReviewCard from '../components/MovieReviewCard';
 
 const movieArray = DummyData.dummyMovieDataArrayed;
+const movieReview = DummyData.dummyReviewData.review;
 // console.log('movie Array', movieArray);
+console.log('movie review', movieReview);
 
 const Movie = ({navigation, route}) => {
   const movieData = route.params;
@@ -95,6 +100,10 @@ const Movie = ({navigation, route}) => {
 
   const handleSubmitReview = () => {
     handleHeartPress();
+  };
+
+  const handleMoviePress = movie => {
+    navigation.push('MovieDetails', movie);
   };
 
   return (
@@ -350,7 +359,12 @@ const Movie = ({navigation, route}) => {
                 ]}>
                 Movies like this
               </Text>
-              <ItemSliders data={movieArray} />
+              <ItemSliders
+                data={movieArray}
+                onItemPress={item => {
+                  handleMoviePress(item);
+                }}
+              />
 
               <View
                 style={{
@@ -368,12 +382,31 @@ const Movie = ({navigation, route}) => {
                   {
                     marginVertical: 5,
                     paddingHorizontal: Dimens.globalPaddingHorizontal,
+                    marginBottom: 20,
                   },
                 ]}>
                 This Movie Review
               </Text>
+              <View>
+                {
+                  ////////////////////////////////////////////////EXPERIMENTAL
+                }
+                <Slider
+                  data={movieReview}
+                  snapInterval={width}
+                  SetView={data => {
+                    // console.log('indx', index);
+                    return (
+                      <MovieReviewCard
+                        {...data}
+                        width={width - Dimens.globalPaddingHorizontal * 2}
+                      />
+                    );
+                  }}
+                />
+              </View>
 
-              <View style={{marginVertical: 10, height: 100}} />
+              <View style={{marginVertical: 10, height: height / 20}} />
             </View>
           </ScrollView>
         </LinearGradient>

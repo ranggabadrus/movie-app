@@ -146,6 +146,90 @@ export const DummyData = {
     'War',
     'Crime',
   ],
+  dummyReviewData: {
+    movieID: '6102b74704750c0067f232b3',
+    review: [
+      {
+        reviewId: 'reviewID10',
+        userID: 12345678910,
+        title: 'Unbelievably Great',
+        content:
+          'This movie so great that i cant sleep due to nightmare so 10/10 for this movie',
+        rating: 4,
+      },
+      {
+        reviewId: 'reviewID12',
+        userID: 12345678911,
+        title: 'Unbelievably Great2',
+        content:
+          'This movie so great that i cant sleep due to nightmare so 10/10 for this movie',
+        rating: 4,
+      },
+      {
+        reviewId: 'reviewID13',
+        userID: 12345678912,
+        title: 'Unbelievably Great3',
+        content:
+          'This movie so great that i cant sleep due to nightmare so 10/10 for this movie',
+        rating: 4,
+      },
+      {
+        reviewId: 'reviewID14',
+        userID: 12345678913,
+        title: 'Unbelievably Great4',
+        content:
+          'This movie so great that i cant sleep due to nightmare so 10/10 for this movie',
+        rating: 4,
+      },
+      {
+        reviewId: 'reviewID15',
+        userID: 12345678915,
+        title: 'Unbelievably Great5',
+        content:
+          'This movie so great that i cant sleep due to nightmare so 10/10 for this movie',
+        rating: 4,
+      },
+    ],
+  },
+  dummyUserData: [
+    {
+      userID: 12345678910,
+      userFullName: 'Isumi Karina',
+      userName: 'isumicaem',
+      userAvatar: null,
+      myReview: [{reviewId: 'reviewID14', movieId: '6102b74704750c0067f232b3'}],
+    },
+    {
+      userID: 12345678911,
+      userFullName: 'Isumi Sumpah Bukan',
+      userName: 'isumicaem2',
+      userAvatar: null,
+    },
+    {
+      userID: 12345678912,
+      userFullName: 'Isumi Munaroh',
+      userName: 'isumicaem3',
+      userAvatar: null,
+    },
+    {
+      userID: 12345678913,
+      userFullName: 'Isumi Kareem',
+      userName: 'isumicaem4',
+      userAvatar: null,
+    },
+    {
+      userID: 12345678914,
+      userFullName: 'Isumi Justifa',
+      userName: 'isumicaem5',
+      userAvatar: null,
+    },
+    {
+      userID: 12345678915,
+      userFullName: 'Isumi Nadia',
+      userName: 'isumicaem6',
+      userAvatar: null,
+    },
+  ],
 };
 export const getMovieTitleAndID = (movieArray = []) => {
   const movieArrayToIterate =
@@ -159,4 +243,4 @@ export const getMovieTitleAndID = (movieArray = []) => {
     movieTitleID.push(thisMovie);
   }
   return movieTitleID;
-}
+};

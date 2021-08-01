@@ -21,6 +21,10 @@ import Profile from './src/screens/Profile';
 import DrawerMain from './src/components/DrawerMain';
 import Search from './src/screens/Search';
 import EditProfile from './src/screens/EditProfile';
+import BookmarkedMovie from './src/screens/BookmarkedMovie';
+import Icon from 'react-native-vector-icons/Ionicons';
+import AvatarImageCircle from './src/components/AvatarImageCircle';
+import { Theme } from './src/utilities/Theme';
 
 const TAG = 'GLOBAL - APP///>>> ';
 
@@ -37,8 +41,39 @@ const Apps = () => {
     return (
       <Tab.Navigator
         initialRouteName={defaultTabScreen}
-        tabBarOptions={{keyboardHidesTabBar: true}}>
-        <Tab.Screen name="Notification" component={Notification} />
+        tabBarOptions={{
+          keyboardHidesTabBar: true,
+          showLabel: false,
+          activeTintColor:Theme.yellow,
+          activeBackgroundColor:Theme.purpledarkest,
+          inactiveTintColor:Theme.light,
+          inactiveBackgroundColor:Theme.purpledarkest,
+        }}
+        screenOptions={({route}) => ({
+          // tabBarIcon: ()=>{
+          //   return(
+          //     <Icon name={'home'}/>
+          //   )
+          // }
+          tabBarIcon: ({focused, color, size}) => {
+            let iconsName = 'home-outline';
+            if (route.name == 'Bookmark') {
+              iconsName = focused ? 'bookmark' : 'bookmark-outline';
+            } else if (route.name == 'Dashboard') {
+              iconsName = focused ? 'play' : 'play-outline';
+            } else if (route.name == 'Profile') {
+              return (
+                <AvatarImageCircle
+                  size={size}
+                  borderColor={color}
+                  borderWidth={focused ? 2 : 0}
+                />
+              );
+            }
+            return <Icon name={iconsName} size={size} color={color} />;
+          },
+        })}>
+        <Tab.Screen name="Bookmark" component={BookmarkedMovie} />
         <Tab.Screen name="Dashboard" component={Dashboard} />
         <Tab.Screen name="Profile" component={Profile} />
       </Tab.Navigator>
@@ -59,7 +94,7 @@ const Apps = () => {
       >
         <Drawer.Screen name="Dashboard" component={DashboardTabRoute} />
         <Drawer.Screen name="MyReview" component={MovieReview} />
-        <Drawer.Screen name="Notification" component={Notification} />
+        <Drawer.Screen name="Bookmark" component={BookmarkedMovie} />
         <Drawer.Screen name="Settings" component={Settings} />
       </Drawer.Navigator>
     );

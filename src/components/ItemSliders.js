@@ -1,5 +1,5 @@
-import React from 'react';
-import {useState} from 'react';
+import React, { useRef } from 'react';
+import { useState } from 'react';
 import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Fonts} from '../utilities/Fonts';
 import {Theme} from '../utilities/Theme';
@@ -21,11 +21,11 @@ const ItemSliders = ({
   // console.log('data received: ', data);
   return (
     <FlatList
-      data={data}
-      keyExtractor={item => item._id}
-      horizontal={!vertical}
-      bounces={false}
-      renderItem={({item}) => {
+    data={data}
+    keyExtractor={item => item._id}
+    horizontal={!vertical}
+    bounces={false}
+    renderItem={({item,index}) => {
         //   console.log('item: ', item);
         return (
           <View

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import {useEffect} from 'react';
 import {
+  Animated,
   Dimensions,
   FlatList,
   ImageBackground,
@@ -40,6 +41,11 @@ const Dashboard = ({navigation}) => {
 
   const [selectedGenre, setSelectedGenre] = useState(defaultGenre);
 
+  const scrollY = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    console.log('scrollY', scrollY);
+  }, []);
+
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested inside']);
     // navigation.openDrawer()
@@ -62,6 +68,7 @@ const Dashboard = ({navigation}) => {
   const handleSearchPress = () => {
     navigation.push('Search');
   };
+  // console.log('scrollY:', scrollY);
 
   return (
     <View>
@@ -77,12 +84,17 @@ const Dashboard = ({navigation}) => {
             Theme.purpledarkest,
             Theme.purpledarkest,
           ]}>
-          <ScrollView>
+          <Animated.ScrollView
+            onScroll={Animated.event(
+              [{nativeEvent: {contentOffset: {y: scrollY}}}],
+              {useNativeDriver: false},
+            )}>
             <View
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 alignItems: 'center',
+                height: height / 10,
               }}>
               <ButtonCircleIcon
                 iconName={'menu-outline'}
@@ -261,7 +273,7 @@ const Dashboard = ({navigation}) => {
                 onItemPress={item => handleMoviePress(item)}
               />
             </View>
-          </ScrollView>
+          </Animated.ScrollView>
         </LinearGradient>
       </ImageBackground>
     </View>
