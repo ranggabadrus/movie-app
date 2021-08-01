@@ -20,6 +20,15 @@ export const changeDummiesDat = payload => {
   };
 };
 
+export const userAuthRegister = payload => {
+  try {
+    
+  } catch (e) {
+    console.log('registerUser error: ',e);
+  }
+};
+
+//firebase exmpl:
 // export const getUserDataRedux = userUID => {
 //   return async (dispatch, getState) => {
 //     await firestore()

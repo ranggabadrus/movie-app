@@ -58,6 +58,7 @@ const Login = ({navigation}) => {
                 underlined
                 height={40}
                 keyType={'email'}
+                autoCap={null}
               />
               <EditText
                 placeholder={'Password'}
