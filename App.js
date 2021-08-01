@@ -24,7 +24,10 @@ import EditProfile from './src/screens/EditProfile';
 import BookmarkedMovie from './src/screens/BookmarkedMovie';
 import Icon from 'react-native-vector-icons/Ionicons';
 import AvatarImageCircle from './src/components/AvatarImageCircle';
-import { Theme } from './src/utilities/Theme';
+import {Theme} from './src/utilities/Theme';
+import {Provider} from 'react-redux';
+import {persistor, store} from './src/redux/store';
+import {PersistGate} from 'redux-persist/integration/react';
 
 const TAG = 'GLOBAL - APP///>>> ';
 
@@ -44,10 +47,10 @@ const Apps = () => {
         tabBarOptions={{
           keyboardHidesTabBar: true,
           showLabel: false,
-          activeTintColor:Theme.yellow,
-          activeBackgroundColor:Theme.purpledarkest,
-          inactiveTintColor:Theme.light,
-          inactiveBackgroundColor:Theme.purpledarkest,
+          activeTintColor: Theme.yellow,
+          activeBackgroundColor: Theme.purpledarkest,
+          inactiveTintColor: Theme.light,
+          inactiveBackgroundColor: Theme.purpledarkest,
         }}
         screenOptions={({route}) => ({
           // tabBarIcon: ()=>{
@@ -119,9 +122,11 @@ const Apps = () => {
 
 export default App = () => {
   return (
-    <>
-      <Apps />
-    </>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Apps />
+      </PersistGate>
+    </Provider>
   );
 };
 

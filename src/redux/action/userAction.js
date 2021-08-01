@@ -1,6 +1,3 @@
-import {getUserByUID} from '../../utilities/UserManager';
-import firestore from '@react-native-firebase/firestore';
-
 export const changeUser = payload => {
   console.log('change user state');
   return {
@@ -23,28 +20,28 @@ export const changeDummiesDat = payload => {
   };
 };
 
-export const getUserDataRedux = userUID => {
-  return async (dispatch, getState) => {
-    await firestore()
-      .collection('UserData')
-      .doc(userUID)
-      .get()
-      .then(res => {
-        const userData = res.data();
-        // console.log('data res', res.data());
-        console.log(`fetching user data by UID: ${userUID} //Data: `, userData);
-        dispatch({
-          type: 'GET_USERDATA',
-          payload: {userData, isSuccess: true},
-        });
-        return res.data();
-      })
-      .catch(e => {
-        console.log('error: ', e);
-        dispatch({
-          type: 'GET_USERDATA_FAILED',
-          payload: {isSuccess: false, message: e},
-        });
-      });
-  };
-};
+// export const getUserDataRedux = userUID => {
+//   return async (dispatch, getState) => {
+//     await firestore()
+//       .collection('UserData')
+//       .doc(userUID)
+//       .get()
+//       .then(res => {
+//         const userData = res.data();
+//         // console.log('data res', res.data());
+//         console.log(`fetching user data by UID: ${userUID} //Data: `, userData);
+//         dispatch({
+//           type: 'GET_USERDATA',
+//           payload: {userData, isSuccess: true},
+//         });
+//         return res.data();
+//       })
+//       .catch(e => {
+//         console.log('error: ', e);
+//         dispatch({
+//           type: 'GET_USERDATA_FAILED',
+//           payload: {isSuccess: false, message: e},
+//         });
+//       });
+//   };
+// };
