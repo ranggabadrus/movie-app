@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "542536664539",
+    "project_id": "the-movie-now",
+    "storage_bucket": "the-movie-now.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:542536664539:android:075638a15f220b603353fe",
+        "android_client_info": {
+          "package_name": "com.themovienow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "542536664539-77536prji55pb9t7v84m5itnioca82ip.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.themovienow",
+            "certificate_hash": "8b6018049b06411f1d8e1b740b75a4771b6de072"
+          }
+        },
+        {
+          "client_id": "542536664539-7udt7u06vk3494iqntcompsg379pjb40.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYFiA2UgJFo1tsdhXvHqwZHZgI5xZBTdE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "542536664539-7udt7u06vk3494iqntcompsg379pjb40.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

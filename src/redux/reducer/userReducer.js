@@ -1,9 +1,5 @@
 const initialState = {
-  userName: 'default_name',
-  userUID: 'default_UID',
-  userEmail: 'default_Email',
-  userData: {},
-  dummyData: 'hahahaha',
+  
 };
 
 const TAG = 'userReducer// ';
