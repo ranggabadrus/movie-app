@@ -26,6 +26,8 @@ import StarRating from '../components/StarRating';
 import Slider from '../components/Slider';
 import AvatarImageCircle from '../components/AvatarImageCircle';
 import MovieReviewCard from '../components/MovieReviewCard';
+import { useDispatch } from 'react-redux';
+import { subscribeMovie } from '../redux/action/movieAction';
 
 const movieArray = DummyData.dummyMovieDataArrayed;
 const movieReview = DummyData.dummyReviewData.review;
@@ -33,21 +35,22 @@ const movieReview = DummyData.dummyReviewData.review;
 console.log('movie review', movieReview);
 
 const Movie = ({navigation, route}) => {
+  const dispatch = useDispatch()
   const movieData = route.params;
   // console.log(movieData);
   const windowDimension = Dimensions.get('window');
   const width = windowDimension.width;
   const height = windowDimension.height;
-
+  
   const animationDuration = 750;
-
+  
   const [starsCount, setStarsCount] = useState(0);
   const [isCommentApear, setIsCommentApear] = useState(false);
-
+  
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(height)).current;
   const translateZ = useRef(new Animated.Value(-1)).current;
-
+  
   useEffect(() => {
     console.log('triggered rating: ', starsCount);
   }, [starsCount]);
@@ -102,9 +105,14 @@ const Movie = ({navigation, route}) => {
     handleHeartPress();
   };
 
-  const handleMoviePress = movie => {
-    navigation.push('MovieDetails', movie);
+  const handleMoviePress = selectedMovie => {
+    navigation.push('MovieDetails', selectedMovie);
   };
+
+  const handleBookmarkPress = () => {
+    dispatch(subscribeMovie(movieData))
+  }
+  
 
   return (
     <View>
@@ -194,11 +202,25 @@ const Movie = ({navigation, route}) => {
             </ImageBackground>
           </Animated.View>
           <ScrollView>
-            <ButtonCircleIcon
-              iconName={'chevron-back-outline'}
-              backgroundColor={null}
-              onPress={() => handleBackPress()}
-            />
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                height: height / 10,
+              }}>
+              <ButtonCircleIcon
+                iconName={'chevron-back-outline'}
+                backgroundColor={null}
+                onPress={() => handleBackPress()}
+              />
+              <ButtonCircleIcon
+                iconName={'bookmark-outline'}
+                backgroundColor={null}
+                iconSize={35}
+                onPress={() => handleBookmarkPress()}
+              />
+            </View>
             <View
               style={{
                 width,
