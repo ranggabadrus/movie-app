@@ -134,7 +134,9 @@ const EditProfile = ({navigation}) => {
                 placeholder={'testplace'}
                 style={{marginBottom: 10}}
                 onChangeText={t => setUserFullName(t)}
+                isError
               />
+              
               <EditTextV2
                 backgroundColor={Theme.purpledarkest}
                 title={'Username'}

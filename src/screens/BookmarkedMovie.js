@@ -1,10 +1,18 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { Dimensions, StyleSheet, Text, View } from 'react-native'
+import ImageBackground from 'react-native/Libraries/Image/ImageBackground'
+
+
+const windowDimension = Dimensions.get('window');
+const width = windowDimension.width;
+const height = windowDimension.height;
 
 const BookmarkedMovie = () => {
     return (
         <View>
-            <Text></Text>
+            <ImageBackground style={{...windowDimension,}}>
+                
+            </ImageBackground>
         </View>
     )
 }

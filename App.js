@@ -2,13 +2,24 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
+//Components Library
+import Icon from 'react-native-vector-icons/Ionicons';
+
 //react-navigation
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-//screen
+//Redux
+import {Provider} from 'react-redux';
+import {persistor, store} from './src/redux/store';
+import {PersistGate} from 'redux-persist/integration/react';
+
+//Custom Libraries
+import {Theme} from './src/utilities/Theme';
+
+//screen import
 import SplashScreen from './src/screens/SplashScreen';
 import Login from './src/screens/Login';
 import Register from './src/screens/Register';
@@ -22,12 +33,8 @@ import DrawerMain from './src/components/DrawerMain';
 import Search from './src/screens/Search';
 import EditProfile from './src/screens/EditProfile';
 import BookmarkedMovie from './src/screens/BookmarkedMovie';
-import Icon from 'react-native-vector-icons/Ionicons';
 import AvatarImageCircle from './src/components/AvatarImageCircle';
-import {Theme} from './src/utilities/Theme';
-import {Provider} from 'react-redux';
-import {persistor, store} from './src/redux/store';
-import {PersistGate} from 'redux-persist/integration/react';
+import AdminDashboard from './src/screens/AdminDashboard';
 
 const TAG = 'GLOBAL - APP///>>> ';
 
@@ -96,7 +103,7 @@ const Apps = () => {
         // openByDefault={true}
       >
         <Drawer.Screen name="Dashboard" component={DashboardTabRoute} />
-        <Drawer.Screen name="MyReview" component={MovieReview} />
+        <Drawer.Screen name="Admin Dashboard" component={AdminDashboard} />
         <Drawer.Screen name="Bookmark" component={BookmarkedMovie} />
         <Drawer.Screen name="Settings" component={Settings} />
       </Drawer.Navigator>

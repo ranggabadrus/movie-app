@@ -156,6 +156,7 @@ export const DummyData = {
         content:
           'This movie so great that i cant sleep due to nightmare so 10/10 for this movie',
         rating: 4,
+        movieTitle: 'Dune',
       },
       {
         reviewId: 'reviewID12',
@@ -164,6 +165,7 @@ export const DummyData = {
         content:
           'This movie so great that i cant sleep due to nightmare so 10/10 for this movie',
         rating: 4,
+        movieTitle: 'The French Conexion',
       },
       {
         reviewId: 'reviewID13',
@@ -172,6 +174,7 @@ export const DummyData = {
         content:
           'This movie so great that i cant sleep due to nightmare so 10/10 for this movie',
         rating: 4,
+        movieTitle: 'The Power Ranger',
       },
       {
         reviewId: 'reviewID14',
@@ -180,6 +183,7 @@ export const DummyData = {
         content:
           'This movie so great that i cant sleep due to nightmare so 10/10 for this movie',
         rating: 4,
+        movieTitle: 'Skidipapap',
       },
       {
         reviewId: 'reviewID15',
@@ -188,6 +192,7 @@ export const DummyData = {
         content:
           'This movie so great that i cant sleep due to nightmare so 10/10 for this movie',
         rating: 4,
+        movieTitle: 'Blu Pilem',
       },
     ],
   },

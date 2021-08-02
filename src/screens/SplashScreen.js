@@ -12,6 +12,7 @@ import {
 import {Fonts} from './../utilities/Fonts';
 import {Theme} from './../utilities/Theme';
 import {imageDimens} from './../utilities/Dimens';
+import {useDispatch, useSelector} from 'react-redux';
 
 const TAG = 'Screen: SplashScreen// ';
 const windowDimension = Dimensions.get('window');
@@ -26,6 +27,7 @@ const SplashScreen = ({navigation}) => {
   const [userLoaded, setUserLoaded] = useState();
   const [movieDataLoaded, setMovieDataLoaded] = useState([]);
 
+  const dispatch = useDispatch();
   const dummyUser = {
     name: 'Isumi Karina',
     email: 'cemungudh.isumi@gmail.gg',
@@ -37,6 +39,16 @@ const SplashScreen = ({navigation}) => {
     {title: 'The Extraordinary'},
     {title: 'Most Wanted Police'},
   ];
+
+  const userData = useSelector(state => state.user.userData);
+  console.log('userData: ', userData);
+
+  const userFlow = () => {
+    // console.log('userFlow');
+    userData.userToken != null
+      ? navigation.navigate('Dashboard')
+      : navigation.navigate('Login');
+  };
 
   const handleUserFlow = () => {
     userTokenFound
@@ -52,7 +64,7 @@ const SplashScreen = ({navigation}) => {
   };
 
   useEffect(() => {
-    handleUserFlow();
+    userFlow();
   }, []);
 
   const handleLoadingText = () => {

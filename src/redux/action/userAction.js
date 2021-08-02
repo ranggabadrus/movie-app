@@ -1,17 +1,14 @@
+import {DummyData} from './../../utilities/DummyData';
+const dummyUser = DummyData.dummyUserData[0];
+
 export const changeUser = payload => {
   console.log('change user state');
-  return {
+  dispatch({
     type: 'SET_USER',
     payload: payload,
-  };
+  });
 };
-export const changeUserData = payload => {
-  console.log('change user data');
-  return {
-    type: 'SET_USER_DATA',
-    payload: payload,
-  };
-};
+
 export const changeDummiesDat = payload => {
   console.log('change dummy data');
   return {
@@ -22,13 +19,30 @@ export const changeDummiesDat = payload => {
 
 export const userAuthRegister = payload => {
   try {
-    
+    dispatch({
+      type: 'USER_REGISTER',
+      payload: {
+        loading: true,
+        success: false,
+        message: 'registering user',
+      },
+    });
   } catch (e) {
-    console.log('registerUser error: ',e);
+    console.log('registerUser error: ', e);
+    dispatch({
+      type: 'USER_REGISTER_ERROR',
+      payload: {
+        loading: false,
+        success: false,
+        message: e,
+      },
+    });
   }
 };
 
+export const updateUser = payload => {};
 
+export const userAuthLogin = payload => {};
 
 //firebase exmpl:
 // export const getUserDataRedux = userUID => {

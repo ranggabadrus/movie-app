@@ -6,9 +6,11 @@ export default (state = initialState, {type, payload}) => {
   switch (type) {
     case 'SUBS_MOVIE':
       console.log('user subscribe to movie: ', payload);
+      const userSubscribe = [...state.userSubscribedMovie, payload];
+      console.log('userSubs to save: ', userSubscribe);
       return {
         ...state,
-        userSubscribedMovie: [...state.userSubscribedMovie, payload],
+        userSubscribedMovie: userSubscribe,
         userSubscribedMovieLastUpdate: Date.now(),
       };
     case 'UNSUBS_MOVIE':
