@@ -142,9 +142,16 @@ const Movie = ({navigation, route}) => {
   };
 
   const handleBookmarkPress = () => {
-    userSubscribed
-      ? dispatch(unsubscribeMovie({userID: user.userID, movie: movieData}))
-      : dispatch(subscribeMovie({userID: user.userID, movie: movieData}));
+    // userSubscribed
+      // ? dispatch(unsubscribeMovie({userID: user.userID, movie: movieData}))
+      // : dispatch(subscribeMovie({userID: user.userID, movie: movieData}));
+      if (userSubscribed) {
+        dispatch(unsubscribeMovie({userID: user.userID, movie: movieData}))
+        setUserSubscribed(false)
+      }else{
+        dispatch(subscribeMovie({userID: user.userID, movie: movieData}))
+        setUserSubscribed(true)
+      }
   };
 
   return (
