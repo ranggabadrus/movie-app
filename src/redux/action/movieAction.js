@@ -19,3 +19,13 @@ export const removeSubscribedMovie = payload => ({
 export const clearState = () => ({
   type: 'CLEAR_MOVIE_STATE',
 });
+
+export const addBookmark = payload => ({
+  type: 'ADD_BOOKMARK',
+  payload,
+});
+
+export const deleteBookmark = payload => ({
+  type: 'DELETE_BOOKMARK',
+  payload,
+});

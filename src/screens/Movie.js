@@ -27,7 +27,12 @@ import Slider from '../components/Slider';
 import AvatarImageCircle from '../components/AvatarImageCircle';
 import MovieReviewCard from '../components/MovieReviewCard';
 import {useDispatch, useSelector} from 'react-redux';
-import {subscribeMovie, unsubscribeMovie} from '../redux/action/movieAction';
+import {
+  subscribeMovie,
+  unsubscribeMovie,
+  addBookmark,
+  deleteBookmark,
+} from '../redux/action/movieAction';
 
 const movieArray = DummyData.dummyMovieDataArrayed;
 const movieReview = DummyData.dummyReviewData.review;
@@ -49,13 +54,25 @@ const Movie = ({navigation, route}) => {
   const [starsCount, setStarsCount] = useState(0);
   const [isCommentApear, setIsCommentApear] = useState(false);
   const [userSubscribed, setUserSubscribed] = useState(false);
+  const [bookmark, setBookmark] = useState(false);
+
+  const bookmarkMovie = useSelector(state => state.movie.bookmarkMovie);
+
+  useEffect(() => {
+    let a = bookmarkMovie.find(foo => foo._id === movieData._id);
+    console.log('aa ', a);
+    if (a) {
+      setBookmark(true);
+    } else {
+      setBookmark(false);
+    }
+  }, [bookmarkMovie]);
 
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(height)).current;
   const translateZ = useRef(new Animated.Value(-1)).current;
 
   const subsData = useSelector(state => state.movie.userSubscribedMovie);
-  console.log('subs data: ', subsData);
 
   useEffect(() => {
     if (subsData != null) {
@@ -143,15 +160,24 @@ const Movie = ({navigation, route}) => {
 
   const handleBookmarkPress = () => {
     // userSubscribed
-      // ? dispatch(unsubscribeMovie({userID: user.userID, movie: movieData}))
-      // : dispatch(subscribeMovie({userID: user.userID, movie: movieData}));
-      if (userSubscribed) {
-        dispatch(unsubscribeMovie({userID: user.userID, movie: movieData}))
-        setUserSubscribed(false)
-      }else{
-        dispatch(subscribeMovie({userID: user.userID, movie: movieData}))
-        setUserSubscribed(true)
-      }
+    // ? dispatch(unsubscribeMovie({userID: user.userID, movie: movieData}))
+    // : dispatch(subscribeMovie({userID: user.userID, movie: movieData}));
+
+    if (bookmark) {
+      dispatch(deleteBookmark(movieData));
+    } else {
+      dispatch(addBookmark(movieData));
+    }
+
+    return;
+
+    if (userSubscribed) {
+      dispatch(unsubscribeMovie({userID: user.userID, movie: movieData}));
+      setUserSubscribed(false);
+    } else {
+      dispatch(subscribeMovie({userID: user.userID, movie: movieData}));
+      setUserSubscribed(true);
+    }
   };
 
   return (
@@ -255,7 +281,7 @@ const Movie = ({navigation, route}) => {
                 onPress={() => handleBackPress()}
               />
               <ButtonCircleIcon
-                iconName={userSubscribed ? 'bookmark' : 'bookmark-outline'}
+                iconName={bookmark ? 'bookmark' : 'bookmark-outline'}
                 backgroundColor={null}
                 iconSize={35}
                 onPress={() => handleBookmarkPress()}

@@ -1,10 +1,25 @@
 const initialState = {
   userSubscribedMovie: [],
+  bookmarkMovie: [],
 };
 
 export default (state = initialState, {type, payload}) => {
   console.log('triggered with type: ', type);
   switch (type) {
+    case 'ADD_BOOKMARK':
+      console.log('action ', payload);
+      return {
+        ...state,
+        bookmarkMovie: [...state.bookmarkMovie, payload],
+      };
+    case 'DELETE_BOOKMARK':
+      return {
+        ...state,
+        bookmarkMovie: state.bookmarkMovie.filter(
+          foo => foo._id !== payload._id,
+        ),
+      };
+
     case 'SUBS_MOVIE':
       console.log(
         'user',
