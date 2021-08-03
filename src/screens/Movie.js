@@ -72,13 +72,14 @@ const Movie = ({navigation, route}) => {
           console.log('movie subscribed');
           setUserSubscribed(true);
         } else {
+          setUserSubscribed(false);
           console.log('movie not subscribed');
         }
       } else {
-        // setUserSubscribed(false);
+        setUserSubscribed(false);
       }
     } else {
-      // setUserSubscribed(false);
+      setUserSubscribed(false);
     }
   }, [subsData]);
 

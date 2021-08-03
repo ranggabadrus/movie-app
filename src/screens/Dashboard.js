@@ -46,9 +46,12 @@ const Dashboard = ({navigation}) => {
   const [selectedGenre, setSelectedGenre] = useState(defaultGenre);
 
   const scrollY = useRef(new Animated.Value(0)).current;
-  useEffect(() => {
-    console.log('scrollY', scrollY);
-  }, []);
+  const handleOnScroll = () => {
+
+    
+  }
+  
+  
 
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested inside']);
@@ -89,10 +92,14 @@ const Dashboard = ({navigation}) => {
             Theme.purpledarkest,
           ]}>
           <Animated.ScrollView
-            onScroll={Animated.event(
-              [{nativeEvent: {contentOffset: {y: scrollY}}}],
-              {useNativeDriver: false},
-            )}>
+            // onScroll={()=>Animated.event(
+            //   [{nativeEvent: {contentOffset: {y: scrollY}}}],
+            //   {useNativeDriver: false},
+            // )}
+            // onScroll={()=>{
+            //   handleOnScroll()
+            // }}
+            >
             <View
               style={{
                 flexDirection: 'row',
