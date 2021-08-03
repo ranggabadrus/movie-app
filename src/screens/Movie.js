@@ -26,31 +26,62 @@ import StarRating from '../components/StarRating';
 import Slider from '../components/Slider';
 import AvatarImageCircle from '../components/AvatarImageCircle';
 import MovieReviewCard from '../components/MovieReviewCard';
-import { useDispatch } from 'react-redux';
-import { subscribeMovie } from '../redux/action/movieAction';
+import {useDispatch, useSelector} from 'react-redux';
+import {subscribeMovie, unsubscribeMovie} from '../redux/action/movieAction';
 
 const movieArray = DummyData.dummyMovieDataArrayed;
 const movieReview = DummyData.dummyReviewData.review;
 // console.log('movie Array', movieArray);
 console.log('movie review', movieReview);
 
+const user = {userID: 'user-Karina99'};
+
 const Movie = ({navigation, route}) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const movieData = route.params;
   // console.log(movieData);
   const windowDimension = Dimensions.get('window');
   const width = windowDimension.width;
   const height = windowDimension.height;
-  
+
   const animationDuration = 750;
-  
+
   const [starsCount, setStarsCount] = useState(0);
   const [isCommentApear, setIsCommentApear] = useState(false);
-  
+  const [userSubscribed, setUserSubscribed] = useState(false);
+
   const opacity = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(height)).current;
   const translateZ = useRef(new Animated.Value(-1)).current;
-  
+
+  const subsData = useSelector(state => state.movie.userSubscribedMovie);
+  console.log('subs data: ', subsData);
+
+  useEffect(() => {
+    if (subsData != null) {
+      const userIndex = subsData.findIndex(item => item.userID == user.userID);
+      console.log('found user subs data in index: ', userIndex);
+      if (userIndex >= 0) {
+        const userSubsData = subsData[userIndex];
+        console.log('user subs data: ', userSubsData);
+        const thisMovieIndex = userSubsData.subscribedMovie.findIndex(
+          item => item._id == movieData._id,
+        );
+        console.log('movie data found in user data in index: ', thisMovieIndex);
+        if (thisMovieIndex >= 0) {
+          console.log('movie subscribed');
+          setUserSubscribed(true);
+        } else {
+          console.log('movie not subscribed');
+        }
+      } else {
+        // setUserSubscribed(false);
+      }
+    } else {
+      // setUserSubscribed(false);
+    }
+  }, [subsData]);
+
   useEffect(() => {
     console.log('triggered rating: ', starsCount);
   }, [starsCount]);
@@ -110,9 +141,10 @@ const Movie = ({navigation, route}) => {
   };
 
   const handleBookmarkPress = () => {
-    dispatch(subscribeMovie(movieData))
-  }
-  
+    userSubscribed
+      ? dispatch(unsubscribeMovie({userID: user.userID, movie: movieData}))
+      : dispatch(subscribeMovie({userID: user.userID, movie: movieData}));
+  };
 
   return (
     <View>
@@ -215,7 +247,7 @@ const Movie = ({navigation, route}) => {
                 onPress={() => handleBackPress()}
               />
               <ButtonCircleIcon
-                iconName={'bookmark-outline'}
+                iconName={userSubscribed ? 'bookmark' : 'bookmark-outline'}
                 backgroundColor={null}
                 iconSize={35}
                 onPress={() => handleBookmarkPress()}

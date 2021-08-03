@@ -8,17 +8,54 @@ import {
   Text,
   View,
 } from 'react-native';
+
 import LinearGradient from 'react-native-linear-gradient';
+import {Dimens} from '../utilities/Dimens';
+import GlobalStyle from '../utilities/GlobalStyle';
+import {Fonts} from '../utilities/Fonts';
+import {Theme} from '../utilities/Theme';
+
 import AvatarImageCircle from '../components/AvatarImageCircle';
 import Button from '../components/Button';
 import ButtonCircleIcon from '../components/ButtonCircleIcon';
 import EditText from '../components/EditText';
-import {Dimens} from '../utilities/Dimens';
-import {Fonts} from '../utilities/Fonts';
-import GlobalStyle from '../utilities/GlobalStyle';
-import {Theme} from '../utilities/Theme';
 import AvatarImage from './../components/AvatarImage';
 import EditTextV2 from './../components/EditTextV2';
+
+const options = {
+  title: 'Select Avatar',
+  storageOptions: {
+    skipBackup: true,
+    path: 'images',
+  },
+};
+
+function pickImage() {
+  ImagePicker.showImagePicker(options, response => {
+    // console.log('Response = ', response);
+
+    if (response.didCancel) {
+      console.log('User cancelled image picker');
+    } else if (response.error) {
+      console.log('ImagePicker Error: ', response.error);
+    } else if (response.customButton) {
+      console.log('User tapped custom button: ', response.customButton);
+    } else {
+      const source = {
+        uri: response.uri,
+        type: response.type,
+        data: response.data,
+        name: response.fileName,
+      };
+
+      // You can also display the image using data:
+      // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+      // setRawImage(source); //state
+      // setImage(response.uri); //state
+    }
+  });
+}
 
 const EditProfile = ({navigation}) => {
   const windowDimension = Dimensions.get('window');
@@ -136,7 +173,7 @@ const EditProfile = ({navigation}) => {
                 onChangeText={t => setUserFullName(t)}
                 isError
               />
-              
+
               <EditTextV2
                 backgroundColor={Theme.purpledarkest}
                 title={'Username'}
@@ -147,8 +184,22 @@ const EditProfile = ({navigation}) => {
                 onChangeText={t => setUsername(t)}
               />
             </View>
-            <View style={{flexDirection: 'row-reverse', paddingHorizontal:Dimens.globalPaddingHorizontal,marginTop:10}}>
-              <Button isBold backgroundColor={Theme.yellow} textColor={Theme.purpledarkest} text={'Submit'} buttonColor={Theme.light} radius={10} isWithRadius style={{paddingHorizontal:30}}/>
+            <View
+              style={{
+                flexDirection: 'row-reverse',
+                paddingHorizontal: Dimens.globalPaddingHorizontal,
+                marginTop: 10,
+              }}>
+              <Button
+                isBold
+                backgroundColor={Theme.yellow}
+                textColor={Theme.purpledarkest}
+                text={'Submit'}
+                buttonColor={Theme.light}
+                radius={10}
+                isWithRadius
+                style={{paddingHorizontal: 30}}
+              />
             </View>
           </ScrollView>
         </LinearGradient>

@@ -17,7 +17,7 @@ const SimpleButtonArray = ({
   disableButton =false,
 }) => {
   const latestMovie = data;
-  console.log(latestMovie);
+  // console.log(latestMovie);
   return (
     <View style={{flexDirection: orientation, width, flexWrap: 'wrap'}}>
       {latestMovie.map((e, i) => {

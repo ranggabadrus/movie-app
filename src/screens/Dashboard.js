@@ -25,9 +25,13 @@ import PosterImage from '../components/PosterImage';
 import {useState} from 'react';
 import SimpleButtonArray from '../components/SimpleButtonArray';
 import ItemSliders from '../components/ItemSliders';
+import {useSelector} from 'react-redux';
 
 const Dashboard = ({navigation}) => {
   const TAG = 'Screen: Dashboard// ';
+
+  const userSubscribedMovie = useSelector(state => state.movie);
+  console.log('user movie state: ', userSubscribedMovie);
 
   const windowDimension = Dimensions.get('window');
   const width = windowDimension.width;
